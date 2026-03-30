@@ -1,0 +1,23 @@
+spec_version: 1
+name: gbill_env
+type: space
+description: "A real-world FinOps Invoice Processing environment. The agent must approve/reject bills based on corporate policies."
+runtime: fastapi
+app: server.app:app
+port: 8000
+action_space:
+  type: "JSON"
+  description: "Action to approve or reject a specific invoice, or finish the task."
+observation_space:
+  type: "JSON"
+  description: "List of invoices, account balance, and task instructions."
+tasks:
+  - id: "easy"
+    description: "Approve all valid bills."
+    expected_difficulty: "easy"
+  - id: "medium"
+    description: "Approve valid bills, reject bills over $500 missing a PO."
+    expected_difficulty: "medium"
+  - id: "hard"
+    description: "Approve valid, reject missing POs, and catch duplicate bills."
+    expected_difficulty: "hard"
